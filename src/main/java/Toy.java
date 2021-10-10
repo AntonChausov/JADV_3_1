@@ -16,7 +16,7 @@ public class Toy extends Thread {
         Random rnd = new Random();
         while (!isInterrupted()) {
             try {
-                Thread.sleep(rnd.nextInt(TOY_SLEEP) + TOY_MIN_SLEEP);
+                Thread.sleep(rnd.nextInt(TOY_SLEEP - TOY_MIN_SLEEP) + TOY_MIN_SLEEP);
             } catch (InterruptedException e) {
                 turnoff();
                 break;
