@@ -18,7 +18,7 @@ public class User extends Thread {
         int i = 0;
         while (i < COUNT) {
             try {
-                Thread.sleep(rnd.nextInt(USER_SLEEP) + USER_MIN_SLEEP);
+                Thread.sleep(rnd.nextInt(USER_SLEEP - USER_MIN_SLEEP) + USER_MIN_SLEEP);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
