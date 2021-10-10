@@ -2,8 +2,8 @@ import java.util.Random;
 
 public class User extends Thread {
 
-    final int SLEEP = 2000;
-    final int MIN_SLEEP = 500;
+    final int USER_SLEEP = 2000;
+    final int USER_MIN_SLEEP = 500;
     final int COUNT = 5;
     private Tumbler tumbler;
 
@@ -15,13 +15,17 @@ public class User extends Thread {
     @Override
     public void run() {
         Random rnd = new Random();
-        for (int i = 0; i < COUNT; i++) {
+        int i = 0;
+        while (i < COUNT) {
             try {
-                Thread.sleep(rnd.nextInt(SLEEP) + MIN_SLEEP);
-                tumbler.changeCondition(true);
-                System.out.println("Tumbler turn on by " + this.getName());
+                Thread.sleep(rnd.nextInt(USER_SLEEP) + USER_MIN_SLEEP);
             } catch (InterruptedException e) {
                 e.printStackTrace();
+            }
+            if (!tumbler.getCondition()) {
+                tumbler.changeCondition(true);
+                System.out.println("Tumbler turn on by " + this.getName());
+                i++;
             }
         }
     }
